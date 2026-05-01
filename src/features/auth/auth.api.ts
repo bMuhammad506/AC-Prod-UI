@@ -14,6 +14,14 @@ export const registerUser = async (
 
   if (!res.ok) {
     const errorBody = await res.json().catch(() => ({}))
+
+    // ✅ Handle structured errors
+    if (errorBody?.errors) {
+      const messages = Object.values(errorBody.errors).join(", ")
+      throw new Error(messages)
+    }
+
+    // fallback
     throw new Error(errorBody?.detail ?? "Registration failed")
   }
 

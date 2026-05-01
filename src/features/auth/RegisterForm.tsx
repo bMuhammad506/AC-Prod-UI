@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { registerUser } from "./auth.api"
+import Button from "../../components/ui/Button"
 
 export default function RegisterForm() {
   const [email, setEmail] = useState("")
@@ -13,7 +14,6 @@ export default function RegisterForm() {
     e.preventDefault()
     setLoading(true)
     setError(null)
-
     try {
       await registerUser({ email, name, password })
       setSuccess(true)
@@ -26,12 +26,14 @@ export default function RegisterForm() {
 
   if (success) {
     return (
-      <div className="text-center py-10 px-6 rounded-xl border border-[#2A2640] bg-gradient-to-br from-[#13111E] to-[#1A1730]">
-        <div className="text-3xl mb-3 text-[#A99FF0]">✦</div>
-        <h2 className="text-xl font-semibold text-[#EDE9FF] mb-2">
-          You're in.
-        </h2>
-        <p className="text-sm text-[#8B85A8]">
+      <div className="text-center py-10 px-6 rounded-xl border border-[#1E1C30] bg-[#0A0917]">
+        <div className="w-10 h-10 rounded-full bg-[#6C5DD3]/20 flex items-center justify-center mx-auto mb-4">
+          <svg className="w-5 h-5 text-[#A99FF0]" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 111.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clipRule="evenodd" />
+          </svg>
+        </div>
+        <h2 className="text-lg font-semibold text-[#EDE9FF] mb-1">You're in.</h2>
+        <p className="text-sm text-[#524E6B]">
           Your acprod account is ready. Start building your system.
         </p>
       </div>
@@ -39,65 +41,39 @@ export default function RegisterForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-
-      {/* name */}
-      <div className="flex flex-col gap-1">
-        <label className="text-xs uppercase tracking-wider text-[#8B85A8]">
-          Name
-        </label>
-        <input
-          className="bg-[#13111E] border border-[#2A2640] rounded-lg px-3 py-3 text-[#EDE9FF] outline-none focus:border-[#7C6EE6]"
-          placeholder="Ada Lovelace"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-      </div>
-
-      {/* email */}
-      <div className="flex flex-col gap-1">
-        <label className="text-xs uppercase tracking-wider text-[#8B85A8]">
-          Email
-        </label>
-        <input
-          type="email"
-          className="bg-[#13111E] border border-[#2A2640] rounded-lg px-3 py-3 text-[#EDE9FF] outline-none focus:border-[#7C6EE6]"
-          placeholder="ada@acprod.app"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </div>
-
-      {/* password */}
-      <div className="flex flex-col gap-1">
-        <label className="text-xs uppercase tracking-wider text-[#8B85A8]">
-          Password
-        </label>
-        <input
-          type="password"
-          className="bg-[#13111E] border border-[#2A2640] rounded-lg px-3 py-3 text-[#EDE9FF] outline-none focus:border-[#7C6EE6]"
-          placeholder="at least 8 characters"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          minLength={8}
-          required
-        />
-      </div>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      {[
+        { label: "Name", type: "text", value: name, set: setName, placeholder: "Ada Lovelace" },
+        { label: "Email", type: "email", value: email, set: setEmail, placeholder: "ada@acprod.app" },
+        { label: "Password", type: "password", value: password, set: setPassword, placeholder: "at least 8 characters", min: 8 },
+      ].map(({ label, type, value, set, placeholder, min }) => (
+        <div key={label} className="flex flex-col gap-1.5">
+          <label className="text-[11px] font-medium uppercase tracking-[0.08em] text-[#6A6487]">
+            {label}
+          </label>
+          <input
+            type={type}
+            className="bg-[#0A0917] border border-[#1E1C30] rounded-[10px] px-3.5 py-3 text-sm text-[#EDE9FF] placeholder:text-[#3A3655] outline-none transition-all focus:border-[#5A4FBB] focus:ring-2 focus:ring-[#6C5DD3]/10"
+            placeholder={placeholder}
+            value={value}
+            onChange={(e) => set(e.target.value)}
+            minLength={min}
+            required
+          />
+        </div>
+      ))}
 
       {error && (
-        <div className="text-sm text-red-300 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-md">
+        <div className="text-sm text-red-300/90 bg-red-500/8 border border-red-500/15 px-3.5 py-2.5 rounded-[10px]">
           {error}
         </div>
       )}
 
-      <button
-        disabled={loading}
-        className="mt-2 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-[#7C6EE6] to-[#A99FF0] disabled:opacity-60"
-      >
-        {loading ? "Creating account…" : "Create account"}
-      </button>
+      <div className="mt-1">
+        <Button type="submit" loading={loading}>
+          Create account
+        </Button>
+      </div>
     </form>
   )
 }
