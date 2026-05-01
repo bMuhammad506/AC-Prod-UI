@@ -26,10 +26,12 @@ export default function RegisterForm() {
 
   if (success) {
     return (
-      <div style={styles.successCard}>
-        <div style={styles.successIcon}>✦</div>
-        <h2 style={styles.successTitle}>You're in.</h2>
-        <p style={styles.successSub}>
+      <div className="text-center py-10 px-6 rounded-xl border border-[#2A2640] bg-gradient-to-br from-[#13111E] to-[#1A1730]">
+        <div className="text-3xl mb-3 text-[#A99FF0]">✦</div>
+        <h2 className="text-xl font-semibold text-[#EDE9FF] mb-2">
+          You're in.
+        </h2>
+        <p className="text-sm text-[#8B85A8]">
           Your acprod account is ready. Start building your system.
         </p>
       </div>
@@ -37,134 +39,65 @@ export default function RegisterForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} style={styles.form}>
-      <div style={styles.field}>
-        <label style={styles.label}>Name</label>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+
+      {/* name */}
+      <div className="flex flex-col gap-1">
+        <label className="text-xs uppercase tracking-wider text-[#8B85A8]">
+          Name
+        </label>
         <input
-          style={styles.input}
+          className="bg-[#13111E] border border-[#2A2640] rounded-lg px-3 py-3 text-[#EDE9FF] outline-none focus:border-[#7C6EE6]"
           placeholder="Ada Lovelace"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
-          autoComplete="name"
         />
       </div>
 
-      <div style={styles.field}>
-        <label style={styles.label}>Email</label>
+      {/* email */}
+      <div className="flex flex-col gap-1">
+        <label className="text-xs uppercase tracking-wider text-[#8B85A8]">
+          Email
+        </label>
         <input
-          style={styles.input}
           type="email"
+          className="bg-[#13111E] border border-[#2A2640] rounded-lg px-3 py-3 text-[#EDE9FF] outline-none focus:border-[#7C6EE6]"
           placeholder="ada@acprod.app"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          autoComplete="email"
         />
       </div>
 
-      <div style={styles.field}>
-        <label style={styles.label}>Password</label>
+      {/* password */}
+      <div className="flex flex-col gap-1">
+        <label className="text-xs uppercase tracking-wider text-[#8B85A8]">
+          Password
+        </label>
         <input
-          style={styles.input}
           type="password"
+          className="bg-[#13111E] border border-[#2A2640] rounded-lg px-3 py-3 text-[#EDE9FF] outline-none focus:border-[#7C6EE6]"
           placeholder="at least 8 characters"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required
           minLength={8}
-          autoComplete="new-password"
+          required
         />
       </div>
 
-      {error && <p style={styles.error}>{error}</p>}
+      {error && (
+        <div className="text-sm text-red-300 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-md">
+          {error}
+        </div>
+      )}
 
       <button
-        type="submit"
         disabled={loading}
-        style={{
-          ...styles.button,
-          opacity: loading ? 0.6 : 1,
-          cursor: loading ? "not-allowed" : "pointer",
-        }}
+        className="mt-2 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-[#7C6EE6] to-[#A99FF0] disabled:opacity-60"
       >
         {loading ? "Creating account…" : "Create account"}
       </button>
     </form>
   )
-}
-
-const styles: Record<string, React.CSSProperties> = {
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "20px",
-  },
-  field: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "6px",
-  },
-  label: {
-    fontSize: "12px",
-    fontWeight: 500,
-    letterSpacing: "0.06em",
-    textTransform: "uppercase",
-    color: "#8B85A8",
-  },
-  input: {
-    background: "#13111E",
-    border: "1px solid #2A2640",
-    borderRadius: "8px",
-    padding: "12px 14px",
-    fontSize: "15px",
-    color: "#EDE9FF",
-    outline: "none",
-    transition: "border-color 0.2s",
-  },
-  button: {
-    marginTop: "8px",
-    padding: "14px",
-    background: "linear-gradient(135deg, #7C6EE6 0%, #A99FF0 100%)",
-    color: "#fff",
-    border: "none",
-    borderRadius: "8px",
-    fontSize: "15px",
-    fontWeight: 600,
-    letterSpacing: "0.02em",
-    transition: "opacity 0.2s, transform 0.1s",
-  },
-  error: {
-    fontSize: "13px",
-    color: "#F09595",
-    margin: 0,
-    padding: "10px 14px",
-    background: "rgba(240,149,149,0.08)",
-    borderRadius: "6px",
-    border: "1px solid rgba(240,149,149,0.2)",
-  },
-  successCard: {
-    textAlign: "center",
-    padding: "40px 24px",
-    background: "linear-gradient(135deg, #13111E 0%, #1A1730 100%)",
-    border: "1px solid #2A2640",
-    borderRadius: "16px",
-  },
-  successIcon: {
-    fontSize: "32px",
-    color: "#A99FF0",
-    marginBottom: "16px",
-  },
-  successTitle: {
-    fontSize: "26px",
-    fontWeight: 600,
-    color: "#EDE9FF",
-    margin: "0 0 8px",
-  },
-  successSub: {
-    fontSize: "15px",
-    color: "#8B85A8",
-    margin: 0,
-    lineHeight: 1.6,
-  },
 }

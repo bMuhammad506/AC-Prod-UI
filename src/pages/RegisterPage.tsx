@@ -3,102 +3,40 @@ import Logo from "../assets/acprod-logo.svg?react"
 
 export default function RegisterPage() {
   return (
-    <div style={styles.page}>
-      {/* Ambient background glow */}
-      <div style={styles.glow} />
+    <div className="min-h-screen flex items-center justify-center bg-[#0B0917] px-4 relative overflow-hidden">
 
-      <div style={styles.card}>
-        {/* Logo */}
-        <div style={styles.logoWrap}>
-          <Logo style={{ width: 160, height: "auto" }} />
+      {/* glow */}
+      <div className="absolute top-[-120px] left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(124,110,230,0.18)_0%,transparent_70%)] pointer-events-none" />
+
+      {/* card */}
+      <div className="relative w-full max-w-md bg-[#100E1C] border border-[#1F1D30] rounded-2xl p-10 flex flex-col gap-7">
+
+        {/* logo */}
+        <div>
+          <Logo className="w-40 h-auto" />
         </div>
 
-        {/* Heading */}
-        <div style={styles.heading}>
-          <h1 style={styles.title}>Create your account</h1>
-          <p style={styles.subtitle}>
+        {/* heading */}
+        <div className="flex flex-col gap-1">
+          <h1 className="text-[#EDE9FF] text-2xl font-semibold tracking-tight">
+            Create your account
+          </h1>
+          <p className="text-[#6B6488] text-sm">
             One system for everything that matters.
           </p>
         </div>
 
+        {/* form */}
         <RegisterForm />
 
-        {/* Footer link */}
-        <p style={styles.footer}>
+        {/* footer */}
+        <p className="text-center text-sm text-[#6B6488]">
           Already have an account?{" "}
-          <a href="/login" style={styles.link}>
+          <a href="/login" className="text-[#A99FF0] font-medium">
             Sign in
           </a>
         </p>
       </div>
     </div>
   )
-}
-
-const styles: Record<string, React.CSSProperties> = {
-  page: {
-    minHeight: "100vh",
-    background: "#0B0917",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "32px 16px",
-    position: "relative",
-    overflow: "hidden",
-    fontFamily: "'DM Sans', 'Helvetica Neue', sans-serif",
-  },
-  glow: {
-    position: "absolute",
-    top: "-120px",
-    left: "50%",
-    transform: "translateX(-50%)",
-    width: "500px",
-    height: "500px",
-    background: "radial-gradient(circle, rgba(124,110,230,0.18) 0%, transparent 70%)",
-    pointerEvents: "none",
-  },
-  card: {
-    position: "relative",
-    width: "100%",
-    maxWidth: "420px",
-    background: "#100E1C",
-    border: "1px solid #1F1D30",
-    borderRadius: "20px",
-    padding: "40px 36px",
-    display: "flex",
-    flexDirection: "column",
-    gap: "28px",
-  },
-  logoWrap: {
-    display: "flex",
-    justifyContent: "flex-start",
-  },
-  heading: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "6px",
-  },
-  title: {
-    fontSize: "22px",
-    fontWeight: 600,
-    color: "#EDE9FF",
-    margin: 0,
-    letterSpacing: "-0.3px",
-  },
-  subtitle: {
-    fontSize: "14px",
-    color: "#6B6488",
-    margin: 0,
-  },
-  footer: {
-    fontSize: "13px",
-    color: "#6B6488",
-    textAlign: "center",
-    margin: 0,
-  },
-  link: {
-    color: "#A99FF0",
-    textDecoration: "none",
-    fontWeight: 500,
-  },
 }
