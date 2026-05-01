@@ -1,11 +1,15 @@
-import './App.css'
+import { Routes, Route, Navigate } from "react-router-dom"
+import RegisterPage from "./pages/RegisterPage"
 
 function App() {
   return (
-    <div>
-      <h1>My First React App</h1>
-      <p>Coming from vanilla JS 😄</p>
-    </div>
+    <Routes>
+      {/* Default route → redirect */}
+      <Route path="/" element={<Navigate to="/register" replace />} />
+
+      {/* Register page */}
+      <Route path="/register" element={<RegisterPage />} />
+    </Routes>
   )
 }
 
