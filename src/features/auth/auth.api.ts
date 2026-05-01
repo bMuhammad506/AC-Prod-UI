@@ -1,9 +1,10 @@
 import type { RegisterRequest, RegisterResponse } from "./auth.types"
+import config from "../../utils/config"
 
 export const registerUser = async (
   data: RegisterRequest
 ): Promise<RegisterResponse> => {
-  const res = await fetch("http://localhost:8000/register", {
+  const res = await fetch(`${config.API_BASE_URL}/auth/register/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

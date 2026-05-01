@@ -1,5 +1,5 @@
 import RegisterForm from "../features/auth/RegisterForm"
-import Logo from "../assets/acprod.svg?react"
+import Logo from "../assets/acprod-logo.svg?react"
 
 export default function RegisterPage() {
   return (

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 84" fill="none">
+  <defs>
+    <linearGradient id="bar1g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8B7FE8"/>
+      <stop offset="100%" stop-color="#6A5FCC"/>
+    </linearGradient>
+    <linearGradient id="bar2g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#A99FF0"/>
+      <stop offset="100%" stop-color="#8B7FE8"/>
+    </linearGradient>
+    <linearGradient id="bar3g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#C5BEFF"/>
+      <stop offset="100%" stop-color="#A99FF0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Mark: three precision bars with graduated heights -->
+  <rect x="0" y="14" width="7" height="56" rx="3.5" fill="url(#bar1g)"/>
+  <rect x="13" y="0" width="7" height="84" rx="3.5" fill="url(#bar2g)"/>
+  <rect x="26" y="24" width="7" height="36" rx="3.5" fill="url(#bar3g)"/>
+
+  <!-- Wordmark -->
+  <text x="50" y="60"
+    font-family="'Inter','DM Sans','Helvetica Neue',sans-serif"
+    font-size="44"
+    font-weight="300"
+    letter-spacing="-2"
+    fill="#EEEAF8">ac</text>
+
+  <text x="102" y="60"
+    font-family="'Inter','DM Sans','Helvetica Neue',sans-serif"
+    font-size="44"
+    font-weight="500"
+    letter-spacing="-2"
+    fill="#A99FF0">prod</text>
+</svg>
